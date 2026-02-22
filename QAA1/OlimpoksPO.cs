@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace TermikaSelenium4
 {
-    public class OlimpoksPO : BasePO
+    public class OlimpoksPO : OlimpoksBasePO
     {
         private IWebElement _inputTextField;
 

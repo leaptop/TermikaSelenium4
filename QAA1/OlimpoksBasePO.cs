@@ -1,33 +1,31 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
 using SeleniumExtras.WaitHelpers;
-using OpenQA.Selenium.DevTools.V129.Network;
 
 namespace TermikaSelenium4
 {
-    internal class PopUpHandler
+    public class OlimpoksBasePO
     {
+        private IWebElement _solutionsMenu => Driver.FindElement(By.XPath("//a[@class='menu-top_list-el-link' and contains(.,'Решения')]"));
+        public ChromeDriver Driver;
+
         private const int waitTime = 7;
-        public WebDriver WebDriver;
-        private IWebElement _closeModal => WebDriver.FindElement(By.XPath("//*[@id='modal-close']"));
-        public PopUpHandler(WebDriver webDriver)
+        private IWebElement _closeModal => Driver.FindElement(By.XPath("//*[@id='modal-close']"));
+        public OlimpoksBasePO(ChromeDriver driver)
         {
-            WebDriver = webDriver;
+            Driver = driver;
+        }
+       public void _clickSoltionsMenuElement()
+        {
+            _solutionsMenu.Click();
         }
         public void HandleTelegramPopup()
         {
             try
             {
                 // 2. Ждем, пока элемент станет кликабельным
-                WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromMilliseconds(3000));
+                WebDriverWait wait = new WebDriverWait(Driver, System.TimeSpan.FromMilliseconds(3000));
                 wait.Until(ExpectedConditions.ElementToBeClickable(_closeModal));
                 _closeModal.Click();
                 Console.WriteLine("Попап о подписке на Телеграм не появился и закрыт.");

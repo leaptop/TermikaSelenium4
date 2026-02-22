@@ -8,10 +8,10 @@ namespace TermikaSelenium4
         [SetUp]
         public void SetUp()
         {
-            PopUpHandler htp = new PopUpHandler(Driver);
             Driver.Manage().Window.Maximize();
             _olimpoksPO = new OlimpoksPO(Driver);
-            htp.HandleTelegramPopup();
+            _olimpoksPO.HandleTelegramPopup();
+            _olimpoksPO._clickSoltionsMenuElement();
             
         }
     
