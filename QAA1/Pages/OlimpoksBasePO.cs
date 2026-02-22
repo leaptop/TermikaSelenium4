@@ -7,7 +7,7 @@ namespace TermikaSelenium4.Pages
 {
     public class OlimpoksBasePO
     {
-        private IWebElement _inputTextField;
+        private IWebElement _laborProtectionMenuItem => Driver.FindElement(By.XPath("//div[@class='menu-top_tab-link-header' and contains(text(),'Охрана труда')]"));
         private IWebElement _solutionsMenu => Driver.FindElement(By.XPath("//a[@class='menu-top_list-el-link' and contains(.,'Решения')]"));
         public IWebDriver Driver;
 
@@ -19,6 +19,11 @@ namespace TermikaSelenium4.Pages
             Driver = driver;
             wait = new WebDriverWait(Driver, System.TimeSpan.FromMilliseconds(3000));
         }
+
+        public void ClickLaborProtectionMenuItem() {
+            _laborProtectionMenuItem.Click();
+        }
+
         public void ClickSolutionsMenuElement()
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(_solutionsMenu));
