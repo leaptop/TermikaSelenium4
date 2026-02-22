@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using TermikaSelenium4.Pages;
 
-namespace TermikaSelenium4
+namespace TermikaSelenium4.Tests
 {
     public class OlimpoksTests : BaseTest
     {
@@ -8,20 +9,19 @@ namespace TermikaSelenium4
         [SetUp]
         public void SetUp()
         {
+            Driver.Navigate().GoToUrl("https://olimpoks.ru/");
             Driver.Manage().Window.Maximize();
             _olimpoksPO = new OlimpoksPO(Driver);
-            _olimpoksPO.HandleTelegramPopup();
-            _olimpoksPO._clickSoltionsMenuElement();
+            _olimpoksPO.HandleTelegramPopup();          
             
         }
     
         [Test]
         
-        public void TestSolutionsClicking()
-        {          
+        public void TestSolutionsClicking()        {
 
-            _olimpoksPO.ClickCatalogButton();
-            Thread.Sleep(7000);
+            _olimpoksPO.ClickSolutionsMenuElement();
+            Thread.Sleep(700000);
         }
      
     }

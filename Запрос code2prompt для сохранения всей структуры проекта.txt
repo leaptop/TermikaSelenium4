@@ -1,0 +1,1 @@
+code2prompt TermikaSelenium4 --include="*.cs,*.md,*.csproj,*.xml,*.yml,*.properties" --exclude="Dependencies/*,build/*,.git/*,.vs/*,node_modules" --output-file=TermikaSelenium4.txt
