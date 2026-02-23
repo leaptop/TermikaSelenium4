@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using System.Text.RegularExpressions;
 
 namespace TermikaSelenium4.Pages
 {
@@ -12,14 +13,24 @@ namespace TermikaSelenium4.Pages
         private IWebElement _searchField => Driver.FindElement(By.XPath("//input[@id='catalog-search-bar-input']"));
         private IWebElement _noCoursesMessage => Driver.FindElement(By.XPath("//div[contains(@class,'products-count') and text()='Нет курсов, соответствующих заданному фильтру']"));
         private IWebElement _searchButton => Driver.FindElement(By.XPath("//button[contains(@id,'catalog-search-bar-search-btn')]"));
+        private IWebElement _labelCoursesCountedNumber => Driver.FindElement(By.XPath("//div[contains(@class,'products-count mt-30')]"));
+
+
         public CoursesCatalogPO(IWebDriver driver) : base(driver)
         {
             Driver = driver;
         }
+        public int GetTheNumberOfCoursesLabel()
+        {
+            return int.Parse(Regex.Match(_labelCoursesCountedNumber.Text, @"\d+").Value); 
+        }
+        public int CountNumberOfCoursesFound()
+        {
+            return Driver.FindElements(By.XPath("//div[contains(@class,'product-card block-gray mt-40 show')]")).Count;
+        }
         public void FindAndExpandCoursesByCategory(String category)
         {
             Driver.FindElement(By.XPath(GetXPathForButtonExpandingCategoriesCourses(category))).Click();
-
         }
 
         public void SearchCourse(String str)
