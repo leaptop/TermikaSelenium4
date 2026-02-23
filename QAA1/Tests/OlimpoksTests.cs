@@ -16,14 +16,23 @@ namespace TermikaSelenium4.Tests
             _olimpoksBasePO = new OlimpoksBasePO(Driver);
             _olimpoksBasePO.HandleTelegramPopup();
         }
+        [Test]
+        public void TestNonExistentCourseSearchResult()
+        {
+            _olimpoksBasePO.ClickSolutionsMenuElement();
+            _olimpoksBasePO.ClickLaborProtectionMenuItem();
+            _coursesCatalogPO = new CoursesCatalogPO(Driver);
+            _coursesCatalogPO.SearchCourse("Несуществующий493Курс");
+            Assert.That(_coursesCatalogPO.ConfirmNoCurrsesFoundMessageIsShown, Is.True);
+        }
 
         [Test]
         //[Repeat(10)]
         public void TestTextSavingTask1()
         {
-            _coursesCatalogPO = new CoursesCatalogPO(Driver);
             _olimpoksBasePO.ClickSolutionsMenuElement();
             _olimpoksBasePO.ClickLaborProtectionMenuItem();
+            _coursesCatalogPO = new CoursesCatalogPO(Driver);
             _coursesCatalogPO.ClickWorkersCheckBox();
             _coursesCatalogPO.ClickBriefingLearningCheckBox();
             _coursesCatalogPO.ClickDetailsButtonByCategory("Видеоинструктажи");

@@ -16,7 +16,7 @@ namespace TermikaSelenium4.Pages
 
         private const int waitTime = 7;
         private IWebElement _closeModal => Driver.FindElement(By.XPath("//*[@id='modal-close']"));
-        WebDriverWait wait;
+        public WebDriverWait wait;
         public OlimpoksBasePO(IWebDriver driver)
         {
             Driver = driver;
