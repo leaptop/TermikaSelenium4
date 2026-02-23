@@ -9,6 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+Запрос code2prompt для сохранения всей структуры проекта.txt
+QAA1/bin
+QAA1/obj
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
