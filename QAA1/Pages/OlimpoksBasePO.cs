@@ -10,6 +10,7 @@ namespace TermikaSelenium4.Pages
         private IWebElement _laborProtectionMenuItem => Driver.FindElement(By.XPath("//div[@class='menu-top_tab-link-header' and contains(text(),'Охрана труда')]"));
         private IWebElement _solutionsMenu => Driver.FindElement(By.XPath("//a[@class='menu-top_list-el-link' and contains(.,'Решения')]"));
         public IWebDriver Driver;
+        private By _telegramPopupBody = By.XPath("//*[@id='modal-content-wrapper']");
 
         private const int waitTime = 7;
         private IWebElement _closeModal => Driver.FindElement(By.XPath("//*[@id='modal-close']"));
@@ -36,6 +37,7 @@ namespace TermikaSelenium4.Pages
                 // 2. Ждем, пока элемент станет кликабельным                
                 wait.Until(ExpectedConditions.ElementToBeClickable(_closeModal));
                 _closeModal.Click();
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(_telegramPopupBody));
                 Console.WriteLine("Попап о подписке на Телеграм появился и закрыт.");
             }
             catch (WebDriverTimeoutException)

@@ -6,7 +6,7 @@ namespace TermikaSelenium4.Tests
     public class OlimpoksTests : BaseTest
     {
         private OlimpoksBasePO _olimpoksBasePO;
-        private LaborProtectionPO _laborProtectionPO;
+        private CoursesCatalogPO _coursesCatalogPO;
         [SetUp]
         public void SetUp()
         {
@@ -20,11 +20,12 @@ namespace TermikaSelenium4.Tests
 
         public void TestSolutionsClicking()
         {
-            _laborProtectionPO = new LaborProtectionPO(Driver);
+            _coursesCatalogPO = new CoursesCatalogPO(Driver);
             _olimpoksBasePO.ClickSolutionsMenuElement();
             _olimpoksBasePO.ClickLaborProtectionMenuItem();
-            _laborProtectionPO.ClickWorkersCheckBox();
-            _laborProtectionPO.ClickBriefingLearningCheckBox();
+            _coursesCatalogPO.ClickWorkersCheckBox();
+            _coursesCatalogPO.ClickBriefingLearningCheckBox();
+            _coursesCatalogPO.FindAndExpandCoursesByCategory("Видеоинструктажи");
             Thread.Sleep(700000);
         }
 
