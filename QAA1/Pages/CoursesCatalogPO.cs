@@ -7,7 +7,7 @@ namespace TermikaSelenium4.Pages
     {
         private IWebElement _workersChecbox => Driver.FindElement(By.XPath("//label[contains(text(),'Рабочие')]/input[@type='checkbox']"));
         private IWebElement _briefingLearningCheckBox => Driver.FindElement(By.XPath("//label[contains(text(),'Инструктаж')]/input[@type='checkbox']"));
-        
+
         public CoursesCatalogPO(IWebDriver driver) : base(driver)
         {
             Driver = driver;
@@ -34,12 +34,10 @@ namespace TermikaSelenium4.Pages
         public void ClickDetailsButtonByCategory(String category)
         {
             Driver.FindElement(By.XPath("//h2[@class='searchable-product' and contains(text(),'"
-                +category+"')]/../..//a[contains(text(),'Подробнее')]")).Click();
+                + category + "')]/../..//a[contains(text(),'Подробнее')]")).Click();
         }
 
         public void ClickWorkersCheckBox() { _workersChecbox.Click(); }
         public void ClickBriefingLearningCheckBox() { _briefingLearningCheckBox.Click(); }
-
-
     }
 }

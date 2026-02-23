@@ -20,14 +20,15 @@ namespace TermikaSelenium4.Pages
         public OlimpoksBasePO(IWebDriver driver)
         {
             Driver = driver;
-            wait = new WebDriverWait(Driver, System.TimeSpan.FromMilliseconds(3000));
+            wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(10));
         }
         /// <summary>
         /// Выбираем "Охрана труда" из меню "Решения".
         /// </summary>
-        public void ClickLaborProtectionMenuItem() {
+        public void ClickLaborProtectionMenuItem()
+        {
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(
-                "//div[contains(@class,'menu-top_list-el-content-outer active')]")));
+                "//div[contains(@class,'menu-top_tab-link-wrapper')]")));
             _laborProtectionMenuItem.Click();
         }
         /// <summary>
@@ -41,7 +42,7 @@ namespace TermikaSelenium4.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(_solutionsMenu));
             _solutionsMenu.Click();
         }
-     
+
         /// <summary>
         /// Надо закрыть попап с предложением о подписке на Телеграм. 
         /// Проблема 1 с его закрытием в том, что он может появляться не всегда. Поэтому использую try catch. 
@@ -53,7 +54,7 @@ namespace TermikaSelenium4.Pages
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(_closeModal));
-                for(int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     try
                     {
@@ -67,10 +68,6 @@ namespace TermikaSelenium4.Pages
 
                     }
                 }
-                
-                // 2. Ждем, пока элемент станет кликабельным              
-               
-               
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(_telegramPopupWrapper));
                 Console.WriteLine("Попап о подписке на Телеграм появился и закрыт.");
             }
